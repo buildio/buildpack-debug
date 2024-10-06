@@ -68,6 +68,13 @@ cat "${PWD}/Procfile" | indent
 # Prints the contents of /layers/config/metadata.toml
 # topic "Contents of CNB_LAYERS_DIR/config/metadata.toml"
 # cat "${apt_layer}/config/metadata.toml" | indent
+#
+# -- - layers_dir (e.g. /layers)
+#      \ buildpack_id
+#        | - startup.toml - launch = true if the layer should be included in the launch image
+#          \ startup
+#            \ exec.d
+#              | - sleep.sh - script that sleeps for 10 minutes
 
 topic "Inserting a sleep into the startup script for the image:"
 # Insert a heredoc into an exec.d script that sleeps for 10 minutes
@@ -81,7 +88,7 @@ launch = true
 EOF
 
 echo "Creating a sleep script" | indent
-cat <<EOF > "${layers_dir}/exec.d/sleep.sh"
+cat <<EOF > "${layers_dir}/startup/exec.d/sleep.sh"
 #!/usr/bin/env bash
 set -eo pipefail
 
