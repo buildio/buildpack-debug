@@ -104,7 +104,7 @@ echo "Setting an environment variable BUILDPACK_DEBUG=true to test"
 # Output the environment variable EXAMPLE="test" to the specified file descriptor
 echo "BUILDPACK_DEBUG=\"true\"" >&3
 EOF
-chmod +x "${layers_dir}/exec.d/sleep.sh"
+chmod +x "${layers_dir}/startup/exec.d/sleep.sh"
 
 # Then sleeps for 10 minutes to allow for debugging
 topic "Sleeping for 10 minutes"
