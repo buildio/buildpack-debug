@@ -2,7 +2,7 @@ api = "0.10"
 
 [buildpack]
 id = "buildio/buildpack-debug"
-version = "0.0.5"
+version = "0.0.6"
 name = "Buildpack Debug"
 homepage = "https://github.com/buildio/buildpack-debug"
 description = "A buildpack that prints debug information about the build environment"

@@ -69,6 +69,27 @@ cat "${PWD}/Procfile" | indent
 # topic "Contents of CNB_LAYERS_DIR/config/metadata.toml"
 # cat "${apt_layer}/config/metadata.toml" | indent
 
+topic "Inserting a sleep into the startup script for the image:"
+# Insert a heredoc into an exec.d script that sleeps for 10 minutes
+echo "Creating a startup layer" | indent
+mkdir -p "${layers_dir}/startup/exec.d"
+# Make this a layer directory:
+echo "Setting the launch flag to true" | indent
+cat <<EOF > "${layers_dir}/startup.toml"
+[types]
+launch = true
+EOF
+
+echo "Creating a sleep script" | indent
+cat <<EOF > "${layers_dir}/exec.d/sleep.sh"
+#!/usr/bin/env bash
+set -eo pipefail
+
+echo "Sleeping for 10 minutes during startup..."
+sleep 600
+EOF
+chmod +x "${layers_dir}/exec.d/sleep.sh"
+
 # Then sleeps for 10 minutes to allow for debugging
 topic "Sleeping for 10 minutes"
 sleep 600
