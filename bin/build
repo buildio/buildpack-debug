@@ -67,7 +67,7 @@ cat "${PWD}/Procfile" | indent
 
 # Prints the contents of /layers/config/metadata.toml
 # topic "Contents of CNB_LAYERS_DIR/config/metadata.toml"
-c# at "${apt_layer}/config/metadata.toml" | indent
+# cat "${apt_layer}/config/metadata.toml" | indent
 
 # Then sleeps for 10 minutes to allow for debugging
 topic "Sleeping for 10 minutes"
