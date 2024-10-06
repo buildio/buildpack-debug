@@ -87,6 +87,15 @@ set -eo pipefail
 
 echo "Sleeping for 10 minutes during startup..."
 sleep 600
+
+echo "Done sleeping"
+
+echo "Setting an environment variable BUILDPACK_DEBUG=true to test"
+# There's a 3rd file that is a quazi-control plane for setting buildpack env vars
+# https://github.com/buildpacks/spec/blob/main/buildpack.md#execd
+# https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/
+# Output the environment variable EXAMPLE="test" to the specified file descriptor
+echo "BUILDPACK_DEBUG=\"true\"" >&3
 EOF
 chmod +x "${layers_dir}/exec.d/sleep.sh"
 
