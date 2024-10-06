@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# bin/detect <build-dir>
+
+# TODO: Add an env var to enable / disable debugging
+exit 0

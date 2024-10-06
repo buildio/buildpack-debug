@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+
+# fail fast
+set -eo pipefail
+
+start_time=$(date +%s%N)
+
+# debug
+# set -x
+
+function error() {
+  echo " !     $*" >&2
+  exit 1
+}
+
+function topic() {
+  echo "-----> $*"
+}
+
+function indent() {
+  c='s/^/       /'
+  case $(uname) in
+    Darwin) sed -l "$c";;
+    *)      sed -u "$c";;
+  esac
+}
+
+layers_dir="$CNB_LAYERS_DIR"
+env_dir="$CNB_PLATFORM_DIR/env"
+
+if compgen -G "${env_dir}/*" > /dev/null; then
+  for var in "${env_dir}"/*; do
+    declare "$(basename "${var}")=$(<"${var}")"
+  done
+fi
+
+# Lists the files in the /workspace directory
+topic "Contents of CNB_APP_DIR (${CNB_APP_DIR})"
+ls -alR "${CNB_APP_DIR}" | indent
+
+# Lists the files in the /platform directory
+topic "Contents of CNB_PLATFORM_DIR (${CNB_PLATFORM_DIR})"
+ls -alR "${CNB_PLATFORM_DIR}" | indent
+
+# Lists the files in the /layers directory
+topic "Contents of CNB_LAYERS_DIR (${CNB_LAYERS_DIR})"
+ls -alR "${CNB_LAYERS_DIR}" | indent
+
+# Lists the files in the /cnb directory
+topic "Contents of /cnb"
+ls -alR /cnb | indent
+
+# Lists the files in the CNB_PLATFORM_DIR/env directory
+topic "Contents of CNB_PLATFORM_DIR/env"
+ls -alR "${CNB_PLATFORM_DIR}/env" | indent
+
+# Prints the contents of /workspace/Procfile
+topic "Contents of CNB_APP_DIR/Procfile"
+cat "${CNB_APP_DIR}/Procfile" | indent
+
+# Prints the contents of /layers/config/metadata.toml
+topic "Contents of CNB_LAYERS_DIR/config/metadata.toml"
+cat "${apt_layer}/config/metadata.toml" | indent
+
+# Then sleeps for 10 minutes to allow for debugging
+topic "Sleeping for 10 minutes"
+sleep 600
+topic "Done sleeping"
+
+end_time=$(date +%s%N)
+echo "Elapsed time: $(( $(( end_time - start_time )) / 1000000 ))ms" | indent

@@ -1,0 +1,18 @@
+api = "0.10"
+
+[buildpack]
+id = "buildio/buildpack-debug"
+version = "0.0.1"
+name = "Buildpack Debug"
+homepage = "https://github.com/buildio/buildpack-debug"
+description = "A buildpack that prints debug information about the build environment"
+keywords = ["debug", "packages"]
+
+[[buildpack.licenses]]
+type = "MIT"
+
+[[stacks]]
+id = "*"
+
+[[targets]]
+os = "linux"
