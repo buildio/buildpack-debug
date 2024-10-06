@@ -37,13 +37,13 @@ fi
 # List the CNB environment variables
 topic "CNB Environment Variables"
 # Iterate over all env vars that start with CNB_ and print them
-for var in $(compgen -A variable); do
+for var in $(compgen -A variable | grep '^CNB_'); do
   echo "$var=${!var}"
 done | indent
 
 # Lists the files in the /workspace directory
-topic "Contents of CNB_APP_DIR (${CNB_APP_DIR})"
-ls -alR "${CNB_APP_DIR}" | indent
+topic "PWD (${PWD})"
+ls -alR "${PWD}" | indent
 
 # Lists the files in the /platform directory
 topic "Contents of CNB_PLATFORM_DIR (${CNB_PLATFORM_DIR})"
@@ -62,8 +62,8 @@ topic "Contents of CNB_PLATFORM_DIR/env"
 ls -alR "${CNB_PLATFORM_DIR}/env" | indent
 
 # Prints the contents of /workspace/Procfile
-topic "Contents of CNB_APP_DIR/Procfile"
-cat "${CNB_APP_DIR}/Procfile" | indent
+topic "Contents of PWD/Procfile"
+cat "${PWD}/Procfile" | indent
 
 # Prints the contents of /layers/config/metadata.toml
 topic "Contents of CNB_LAYERS_DIR/config/metadata.toml"
