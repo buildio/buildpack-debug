@@ -1,6 +1,7 @@
 # Debug Buildpack
 
 This is a [Cloud Native Buildpack](https://buildpacks.io/) whose sole purpose is to help debug Buildpacks. It:
+ - Lists the CNB_* environment variables
  - Lists the files in the CNB_APP_DIR directory
  - Lists the files in the CNB_PLATFORM_DIR directory
  - Lists the files in the CNB_LAYERS_DIR directory

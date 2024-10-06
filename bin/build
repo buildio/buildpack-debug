@@ -34,6 +34,13 @@ if compgen -G "${env_dir}/*" > /dev/null; then
   done
 fi
 
+# List the CNB environment variables
+topic "CNB Environment Variables"
+# Iterate over all env vars that start with CNB_ and print them
+for var in $(compgen -A variable); do
+  echo "$var=${!var}"
+done | indent
+
 # Lists the files in the /workspace directory
 topic "Contents of CNB_APP_DIR (${CNB_APP_DIR})"
 ls -alR "${CNB_APP_DIR}" | indent
