@@ -43,23 +43,23 @@ done | indent
 
 # Lists the files in the /workspace directory
 topic "PWD (${PWD})"
-ls -alR "${PWD}" | indent
+ls -al "${PWD}" | indent
 
 # Lists the files in the /platform directory
 topic "Contents of CNB_PLATFORM_DIR (${CNB_PLATFORM_DIR})"
-ls -alR "${CNB_PLATFORM_DIR}" | indent
+ls -al "${CNB_PLATFORM_DIR}" | indent
 
 # Lists the files in the /layers directory
 topic "Contents of CNB_LAYERS_DIR (${CNB_LAYERS_DIR})"
-ls -alR "${CNB_LAYERS_DIR}" | indent
+ls -al "${CNB_LAYERS_DIR}" | indent
 
 # Lists the files in the /cnb directory
 topic "Contents of /cnb"
-ls -alR /cnb | indent
+ls -al /cnb | indent
 
 # Lists the files in the CNB_PLATFORM_DIR/env directory
 topic "Contents of CNB_PLATFORM_DIR/env"
-ls -alR "${CNB_PLATFORM_DIR}/env" | indent
+ls -al "${CNB_PLATFORM_DIR}/env" | indent
 
 # Prints the contents of /workspace/Procfile
 topic "Contents of PWD/Procfile"
