@@ -63,7 +63,12 @@ ls -al "${CNB_PLATFORM_DIR}/env" | indent
 
 # Prints the contents of /workspace/Procfile
 topic "Contents of PWD/Procfile"
-cat "${PWD}/Procfile" | indent
+# Check that the Procfile exists
+if [ -f "${PWD}/Procfile" ]; then
+  cat "${PWD}/Procfile" | indent
+else
+  echo "No Procfile found"
+fi
 
 # Prints the contents of /layers/config/metadata.toml
 # topic "Contents of CNB_LAYERS_DIR/config/metadata.toml"
